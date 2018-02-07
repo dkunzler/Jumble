@@ -64,7 +64,8 @@ android {
 
     // Trigger NDK build on java compilation task.
     task ndkBuild(type: Exec) {
-        commandLine 'ndk-build', '-C', file('src/main/jni/').absolutePath
+        def ndkDir = android.ndkDirectory.getAbsolutePath()
+        commandLine ndkDir + File.separator + 'ndk-build.cmd', '-C', file('src/main/jni/').absolutePath
     }
 
     tasks.withType(JavaCompile) {
